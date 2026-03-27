@@ -165,12 +165,21 @@
 </template>
 
 <script setup lang="ts">
+import { Howl } from 'howler';
 const showPaper = ref(false)
-
+const sound = new Howl({
+    src: ['/sounds/sound.mp3'],
+    autoplay: false,
+});
 onMounted(() => {
   setTimeout(() => {
-    showPaper.value = true
+    showPaper.value = true;
+    sound.play();
   }, 100)
+})
+
+onUnmounted(()=>{
+  sound.stop();
 })
 </script>
 
